@@ -1,4 +1,4 @@
-package com.moss.springseed;
+package com.moss.rjs;
 
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
@@ -46,7 +46,7 @@ public class AppInitializer implements WebApplicationInitializer {
     
     private AnnotationConfigWebApplicationContext getServletContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation("com.moss.springseed.ServletContextConfig");
+        context.setConfigLocation(ServletContextConfig.class.getName());
         return context;
     }
 }

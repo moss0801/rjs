@@ -1,4 +1,4 @@
-package com.moss.springseed;
+package com.moss.rjs;
 
 import java.io.IOException;
 

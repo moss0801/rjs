@@ -1,4 +1,4 @@
-package com.moss.springseed;
+package com.moss.rjs;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @ComponentScan(
-		basePackages="com.moss.springseed",
+		basePackages="com.moss",
 		useDefaultFilters=false,
 		includeFilters=@ComponentScan.Filter({Service.class, Repository.class}))
 @Configuration
