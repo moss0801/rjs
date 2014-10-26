@@ -3,13 +3,21 @@
 require.config({
   baseUrl: 'app',
   paths: {
-    'angular': '../bower_components/angular/angular'
+    'angular': '../bower_components/angular/angular',
+    'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router'
   },
   //angular does not support AMD out of the box, put it in a shim
   shim: {
     'angular': {
       exports: 'angular'
+    },
+    'angular-ui-router': {
+      deps: ['angular']
     }
-  },
-  deps: ['js/app']
+  }
+});
+
+// bootstarp angular
+require(['angular', 'js/app'], function (angular, app) {
+  angular.bootstrap(document, ['app']);
 });

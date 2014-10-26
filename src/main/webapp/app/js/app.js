@@ -1,13 +1,14 @@
 (function(define) {
   define([
     'angular',
-    'js/controllers/baseController'
-  ], function(angular, baseController) {
-    var app = angular.module('app', [])
+    'js/routes',
+    'js/controllers/baseController',
+    'angular-ui-router',
+  ], function(angular, routes, baseController) {
+    var app = angular.module('app', ['ui.router'])
+      .config(routes)
       .controller('baseController', baseController)
       .value('test', 'test');
-    
-    angular.bootstrap(document, ['app']);
     
     return app;
   });
