@@ -1,6 +1,6 @@
 (function(define) {
   'use strict';
-  define(['angular'], function(angular) {
+  define([], function() {
     return ['$scope', function($scope) {
       $scope.test = "aaaaa";
     }];

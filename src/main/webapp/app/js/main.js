@@ -3,6 +3,7 @@
 require.config({
   baseUrl: 'app',
   paths: {
+    'text': '../bower_components/requirejs-text/text',
     'angular': '../bower_components/angular/angular',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router'
   },
@@ -18,6 +19,6 @@ require.config({
 });
 
 // bootstarp angular
-require(['angular', 'js/app'], function (angular, app) {
+require(['text', 'angular', 'js/app'], function (text, angular, app) {
   angular.bootstrap(document, ['app']);
 });
