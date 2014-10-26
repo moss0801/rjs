@@ -2,11 +2,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.moss</groupId>
-  <artifactId>spring-seed</artifactId>
+  <artifactId>rjs</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>spring-seed</name>
-  <description>spring-seed</description>
+  <name>rjs</name>
+  <description>rjs</description>
   <properties>
     <encoding>UTF-8</encoding>
     <java.version>1.7</java.version>
