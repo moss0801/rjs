@@ -4,14 +4,13 @@
 <head>
 <base th:href="@{/}"></base>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body ng-controller="baseController">
-{{test}}
-<a ui-sref="home">home</a>
-<a ui-sref="test">test</a>
-<div ui-view="">ui view</div>
-<script data-main="app/js/main" src="bower_components/requirejs/require.js"></script>
+<a href="" ui-sref="home">home</a>
+<a href="" ui-sref="test">test</a>
+<div ui-view=""></div>
+<!-- <script data-main="app/js/main" src="bower_components/requirejs/require.js"></script> -->
+<script data-main="dist/main" src="bower_components/requirejs/require.js"></script>
 </body>
 </html>

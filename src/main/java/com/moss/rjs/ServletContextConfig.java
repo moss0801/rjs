@@ -28,6 +28,7 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/app/**").addResourceLocations("/app/");
+        registry.addResourceHandler("/dist/**").addResourceLocations("/dist/");
         registry.addResourceHandler("/bower_components/**").addResourceLocations("/bower_components/");
     }
     
