@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -21,14 +23,21 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 		useDefaultFilters=false,
 		includeFilters=@ComponentScan.Filter({Controller.class, RestController.class}))
 @Configuration
-public class ServletContextConfig {
-
+public class ServletContextConfig extends WebMvcConfigurerAdapter {
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/app/**").addResourceLocations("/app/");
+        registry.addResourceHandler("/bower_components/**").addResourceLocations("/bower_components/");
+    }
+    
     @Bean
     public ServletContextTemplateResolver templateResolver() {
         ServletContextTemplateResolver templateResolve = new ServletContextTemplateResolver();
         templateResolve.setPrefix("app/");
         templateResolve.setSuffix(".html");
         templateResolve.setTemplateMode("HTML5");
+        templateResolve.setCacheable(false);
         return templateResolve; 
     }
     
@@ -43,6 +52,7 @@ public class ServletContextConfig {
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
         thymeleafViewResolver.setTemplateEngine(templateEngine());
+        thymeleafViewResolver.setCache(false);
         return thymeleafViewResolver;
     }
 }
