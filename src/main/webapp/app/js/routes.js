@@ -6,7 +6,7 @@ define([
   return ['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function ($locationProvider, $stateProvider, $urlRouterProvider) {
       $locationProvider.html5Mode(true);
-      //$urlRouterProvider.otherwise("/");
+      $urlRouterProvider.otherwise("/");
     
       $stateProvider
         .state('home', {
