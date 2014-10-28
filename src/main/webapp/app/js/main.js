@@ -9,7 +9,8 @@ require.config({
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
     'angular-translate': '../bower_components/angular-translate/angular-translate',
-    'angular-translate-loader-static-files': '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files'      
+    'angular-translate-loader-static-files': '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files',
+    'messageList' : '../message'
   },
   //angular does not support AMD out of the box, put it in a shim
   shim: {

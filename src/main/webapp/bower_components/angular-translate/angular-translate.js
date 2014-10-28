@@ -3,6 +3,7 @@
  * http://github.com/angular-translate/angular-translate
  * Copyright (c) 2014 ; Licensed MIT
  */
+(function(window, angular, undefined) {'use strict';
 angular.module('pascalprecht.translate', ['ng']).run([
   '$translate',
   function ($translate) {
@@ -958,3 +959,4 @@ angular.module('pascalprecht.translate').filter('translate', [
     return translateFilter;
   }
 ]);
+})(window, window.angular);

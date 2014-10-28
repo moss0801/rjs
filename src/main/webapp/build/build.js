@@ -1,14 +1,15 @@
 ({
   baseUrl : "../app",
   paths: {
-    'requirejs': '../bower_components/requirejs/require',
+    'requirejs': '../lib/requirejs/require.min',
     'text': '../bower_components/requirejs-text/text',
     'angular': '../bower_components/angular/angular.min',
     'angular-resource': '../bower_components/angular-resource/angular-resource.min',
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router.min',
     'angular-translate': '../bower_components/angular-translate/angular-translate.min',
-    'angular-translate-loader-static-files': '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min'
+    'angular-translate-loader-static-files': '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min',
+    'messageList' : 'empty:'
   },
   shim: {
     'angular': {

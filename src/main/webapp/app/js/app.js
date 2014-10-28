@@ -2,28 +2,17 @@
   define([
     'angular',
     'js/routes',
-    
+    'text!messageList',
+    // service
     'js/services/baseService',
-    
+    // controller
     'js/controllers/baseController',
-    
     'angular-ui-router',
-  ], function(angular, routes, baseService, baseController) {
+  ], function(angular, routes, messageList, baseService, baseController) {
     var app = angular.module('app', ['ngResource', 'ngCookies', 'ui.router', 'pascalprecht.translate'])
       .config(routes)
       .config(function ($translateProvider) {
-        $translateProvider.translations('en', {
-          TITLE: 'Hello',
-          FOO: 'This is a paragraph.',
-          BUTTON_LANG_EN: 'english',
-          BUTTON_LANG_DE: 'german'
-        });
-        $translateProvider.translations('de', {
-          TITLE: 'Hallo',
-          FOO: 'Dies ist ein Paragraph.',
-          BUTTON_LANG_EN: 'englisch',
-          BUTTON_LANG_DE: 'deutsch'
-        });
+        $translateProvider.translations('en', angular.fromJson(messageList));
         $translateProvider.preferredLanguage('en');
       })
       .service('baseService', baseService)

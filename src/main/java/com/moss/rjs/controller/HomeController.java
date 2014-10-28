@@ -1,5 +1,8 @@
 package com.moss.rjs.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.core.env.Environment;
@@ -30,5 +33,14 @@ public class HomeController {
 	@RequestMapping(value="name", method=RequestMethod.GET)
 	public String getName() {
 		return environmnet.getProperty("name");
+	}
+	
+	@ResponseBody
+    @RequestMapping(value="message", method=RequestMethod.GET)
+	public Map<String, String> getMessageList() {
+	    Map<String, String> messageList = new HashMap<String, String>();
+	    messageList.put("ABC", "에이비씨");
+	    messageList.put("DEF", "디이에프");
+	    return messageList;
 	}
 }

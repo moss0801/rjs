@@ -3,6 +3,7 @@
  * http://github.com/angular-translate/angular-translate
  * Copyright (c) 2014 ; Licensed MIT
  */
+(function (window, angular, undefined) {
 angular.module('pascalprecht.translate').factory('$translateStaticFilesLoader', [
   '$q',
   '$http',
@@ -29,3 +30,4 @@ angular.module('pascalprecht.translate').factory('$translateStaticFilesLoader', 
     };
   }
 ]);
+})(window, window.angular);
