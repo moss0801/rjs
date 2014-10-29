@@ -4,7 +4,9 @@
     'requirejs': '../lib/requirejs/require.min',
     'text': '../bower_components/requirejs-text/text',
     'angular': '../bower_components/angular/angular.min',
-    'angular-i18n': 'empty:',
+    'angular-i18n_en-us': 'i18n/angular-locale_en-us',
+    'angular-i18n_ko-kr': 'i18n/angular-locale_ko-kr',
+    'angular-i18n_ko': 'i18n/angular-locale_ko',
     'angular-resource': '../bower_components/angular-resource/angular-resource.min',
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router.min',
@@ -15,6 +17,15 @@
   shim: {
     'angular': {
       exports: 'angular'
+    },
+    'angular-i18n_en-us': {
+      deps: ['angular']
+    },
+    'angular-i18n_ko-kr': {
+      deps: ['angular']
+    },
+    'angular-i18n_ko': {
+      deps: ['angular']
     },
     'angular-resource': {
       deps: ['angular']

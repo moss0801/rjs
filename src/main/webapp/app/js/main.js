@@ -5,7 +5,9 @@ require.config({
   paths: {
     'text': '../bower_components/requirejs-text/text',
     'angular': '../bower_components/angular/angular',
-    'angular-i18n': 'i18n/angular-locale_' + appProperties.jsLocale,
+    'angular-i18n_en-us': 'i18n/angular-locale_en-us',
+    'angular-i18n_ko-kr': 'i18n/angular-locale_ko-kr',
+    'angular-i18n_ko': 'i18n/angular-locale_ko',
     'angular-resource': '../bower_components/angular-resource/angular-resource',
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
@@ -18,7 +20,13 @@ require.config({
     'angular': {
       exports: 'angular'
     },
-    'angular-i18n': {
+    'angular-i18n_en-us': {
+      deps: ['angular']
+    },
+    'angular-i18n_ko-kr': {
+      deps: ['angular']
+    },
+    'angular-i18n_ko': {
       deps: ['angular']
     },
     'angular-resource': {
@@ -41,10 +49,15 @@ require([
          'text',
          'angular',
          'js/app',
-         'angular-i18n',
          'angular-resource',
          'angular-cookies',
          'angular-ui-router',
          'angular-translate'], function (text, angular, app) {
   angular.bootstrap(document, ['app']);
 });
+
+if ('ko' === appProperties.jsLocale) {
+  require(['angular-i18n_ko'], function(i18n) {});
+} else if ('en-us' === appProperties.jsLocale) {
+  require(['angular-i18n_en-us'], function(i18n) {});
+}
