@@ -10,6 +10,7 @@
   var appProperties = {
     locale: /*[[${#locale.toString()}]]*/
   };
+  appProperties.jsLocale = appProperties.locale.replace('_', '-').toLowerCase();
   /*]]>*/
 </script>
 </head>

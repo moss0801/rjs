@@ -5,6 +5,7 @@ require.config({
   paths: {
     'text': '../bower_components/requirejs-text/text',
     'angular': '../bower_components/angular/angular',
+    'angular-i18n': 'i18n/angular-locale_' + appProperties.jsLocale,
     'angular-resource': '../bower_components/angular-resource/angular-resource',
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
@@ -17,6 +18,9 @@ require.config({
     'angular': {
       exports: 'angular'
     },
+    'angular-i18n': {
+      deps: ['angular']
+    },
     'angular-resource': {
       deps: ['angular']
     },
@@ -28,9 +32,6 @@ require.config({
     },
     'angular-translate': {
       deps: ['angular']
-    },
-    'angular-translate-loader-static-files': {
-      deps: ['angular-translate']
     }
   }
 });
@@ -40,10 +41,10 @@ require([
          'text',
          'angular',
          'js/app',
+         'angular-i18n',
          'angular-resource',
          'angular-cookies',
          'angular-ui-router',
-         'angular-translate',
-         'angular-translate-loader-static-files'], function (text, angular, app) {
+         'angular-translate'], function (text, angular, app) {
   angular.bootstrap(document, ['app']);
 });

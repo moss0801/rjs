@@ -4,6 +4,7 @@
     'requirejs': '../lib/requirejs/require.min',
     'text': '../bower_components/requirejs-text/text',
     'angular': '../bower_components/angular/angular.min',
+    'angular-i18n': 'empty:',
     'angular-resource': '../bower_components/angular-resource/angular-resource.min',
     'angular-cookies': '../bower_components/angular-cookies/angular-cookies.min',
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router.min',
