@@ -10,7 +10,7 @@ require.config({
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
     'angular-translate': '../bower_components/angular-translate/angular-translate',
     'angular-translate-loader-static-files': '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files',
-    'messageList' : '../message'
+    'messageList' : '../message/' + appProperties.locale + ".json"
   },
   //angular does not support AMD out of the box, put it in a shim
   shim: {
