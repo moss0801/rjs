@@ -6,6 +6,7 @@
         $scope.test = "aaaaa";
         $cookies.test = "test";
         $scope.name = baseService.get();
+        $scope.now = new Date();
     }];
   });
 })(define);

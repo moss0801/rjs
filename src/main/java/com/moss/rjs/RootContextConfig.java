@@ -23,6 +23,7 @@ import com.moss.rjs.message.MessageMapSource;
 public class RootContextConfig {
     
     private Locale[] localeList = new Locale[] {
+            Locale.KOREAN,
             Locale.KOREA,
             Locale.US
     };
