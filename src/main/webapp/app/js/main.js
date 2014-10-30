@@ -56,8 +56,11 @@ require([
   angular.bootstrap(document, ['app']);
 });
 
+// i18n 설정
 if ('ko' === appProperties.jsLocale) {
   require(['angular-i18n_ko'], function(i18n) {});
+} else if ('ko_KR' === appProperties.jsLocale) {
+  require(['angular-i18n_ko-kr'], function(i18n) {});
 } else if ('en-us' === appProperties.jsLocale) {
   require(['angular-i18n_en-us'], function(i18n) {});
 }

@@ -45,7 +45,7 @@
   },
   name: "js/main",
   include: 'requirejs',
-  out: '../dist/main.js',
+  out: '../dist/rjs.min.js',
   removeCombined: true,
   optimize: 'uglify2',
   uglify2: {

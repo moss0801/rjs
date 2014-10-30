@@ -35,5 +35,5 @@ public class RootContextConfig {
         messageMapSource.setLocaleList(localeList);
         return messageMapSource;
     }
-    
+   
 }
