@@ -28,6 +28,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @Configuration
 public class ServletContextConfig extends WebMvcConfigurerAdapter {
     
+    // Resource
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/app/**").addResourceLocations("/app/");
@@ -35,6 +36,7 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/bower_components/**").addResourceLocations("/bower_components/");
     }
     
+    // I18n
     @Bean
     public CookieLocaleResolver localeResolver() {
         CookieLocaleResolver localeResolver = new CookieLocaleResolver();
@@ -49,7 +51,7 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(localeChangeInterceptor);
     }
     
-    
+    // View
     @Bean
     public ServletContextTemplateResolver templateResolver() {
         ServletContextTemplateResolver templateResolve = new ServletContextTemplateResolver();
