@@ -1,6 +1,7 @@
 package com.moss.rjs.message;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -36,6 +37,9 @@ public class MessageMapSource implements InitializingBean {
     public class ExposedMessageSource extends ResourceBundleMessageSource {
         public Set<String> getKeys(String basename, Locale locale) {
             ResourceBundle bundle = getResourceBundle(basename, locale);
+            if (null == bundle) {
+                return new HashSet<String>();
+            }
             return bundle.keySet();
         }
     }
