@@ -1,5 +1,8 @@
 package com.moss.rjs.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -35,13 +38,18 @@ public class HomeController {
 	public ModelAndView index() {
 	    ModelAndView mav = new ModelAndView();
 	    mav.setViewName("index");
+	    System.out.println(new Date());
 	    return mav;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="name", method=RequestMethod.GET)
-	public String getName() {
-		return environmnet.getProperty("name");
+	public List<String> getName() {
+	    List<String> list = new ArrayList<String>();
+	    for (int i = 0; i < 10; i++) {
+	        list.add(environmnet.getProperty("name") + i);
+	    }
+		return list;
 	}
 	
 	@ResponseBody
