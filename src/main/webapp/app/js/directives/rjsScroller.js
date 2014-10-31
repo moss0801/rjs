@@ -20,14 +20,15 @@
             return scope.$eval(properties.list + '.length');
           }, function(newLength) {
             $log.debug(newLength);
-            // 목록이 없는 경우 무시
-            if (newLength === 0) {
-              return ;
-            }
+            
             // 목록 재 로드시 scroller reload 및 top으로 이동
             $timeout(function() {
               $log.debug('reload and slideTo(0)');
             }, properties.reloadDelay);
+            // 목록이 없는 경우 무시
+            if (newLength === 0) {
+              return ;
+            }
             var list = scope.$eval(properties.list);
             
             // 각 제목 클릭시 처리
