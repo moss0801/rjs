@@ -7,6 +7,8 @@
         link: function(scope, element, attrs, ctrl){
           var properties = {
             list: 'bookList',
+            item: 'book',
+            clicked: '$clicked',
             titleTag: 'h3',
             reloadDelay: 300
           };
@@ -30,8 +32,8 @@
             
             // 각 제목 클릭시 처리
             element.find(properties.titleTag).on('click', function(e) {
-              var book = angular.element(e.target).scope().book;
-              if (book.$clicked) {
+              var book = angular.element(e.target).scope()[properties.item];
+              if (book[properties.clicked]) {
                 $timeout(function() {
                   $log.debug('reload and slideTo(e.target)');
                 }, properties.reloadDelay);
@@ -39,7 +41,7 @@
                 var isAllClosed = true;
                 // 모두 다 닫혔는지 확인
                 for (var i = 0; i < scope.bookList.length; i++) {
-                  if (true === scope.bookList[i].$clicked) {
+                  if (true === scope.bookList[i][properties.clicked]) {
                     isAllClosed = false;
                     break;
                   }
@@ -53,7 +55,7 @@
                 }
               }
               $log.debug(book);
-              $log.debug(book.$clicked);
+              $log.debug(book[properties.clicked]);
             });
           });
         }
