@@ -28,20 +28,20 @@
             $timeout(function() {
               $log.debug('reload and slideTo(0)');
             }, properties.reloadDelay);
-            
+            var list = scope.$eval(properties.list);
             
             // 각 제목 클릭시 처리
             element.find(properties.titleTag).on('click', function(e) {
-              var book = angular.element(e.target).scope()[properties.item];
-              if (book[properties.clicked]) {
+              var item = angular.element(e.target).scope()[properties.item];
+              if (item[properties.clicked]) {
                 $timeout(function() {
-                  $log.debug('reload and slideTo(e.target)');
+                  $log.debug('reload and slideTo(' + item.title + ')');
                 }, properties.reloadDelay);
               } else {
                 var isAllClosed = true;
                 // 모두 다 닫혔는지 확인
-                for (var i = 0; i < scope.bookList.length; i++) {
-                  if (true === scope.bookList[i][properties.clicked]) {
+                for (var i = 0; i < list.length; i++) {
+                  if (true === list[i][properties.clicked]) {
                     isAllClosed = false;
                     break;
                   }
@@ -54,8 +54,8 @@
                   }, properties.reloadDelay);
                 }
               }
-              $log.debug(book);
-              $log.debug(book[properties.clicked]);
+              $log.debug(item);
+              $log.debug(item[properties.clicked]);
             });
           });
         }
