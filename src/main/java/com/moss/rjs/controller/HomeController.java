@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.moss.rjs.message.MessageMapSource;
+import com.moss.rjs.model.Book;
 
 @Controller
 public class HomeController {
@@ -51,6 +52,19 @@ public class HomeController {
 	    }
 		return list;
 	}
+	
+	@ResponseBody
+    @RequestMapping(value="book", method=RequestMethod.GET)
+    public List<Book> getBookList() {
+        List<Book> list = new ArrayList<Book>();
+        for (int i = 0; i < 10; i++) {
+            Book book = new Book();
+            book.setTitle("book title" + i);
+            book.setContent("book content" + i);
+            list.add(book);
+        }
+        return list;
+    }
 	
 	@ResponseBody
     @RequestMapping(value="message/{locale}.json", method=RequestMethod.GET)

@@ -5,11 +5,11 @@ define([
   'use strict';
   return ['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function ($locationProvider, $stateProvider, $urlRouterProvider) {
-      $locationProvider.html5Mode(true).hashPrefix('!');
+      $locationProvider.html5Mode(true);
       $urlRouterProvider.otherwise("/");
       $stateProvider
         .state('home', {
-          url: '/',
+          url: '/?test',
           template: home
         })
         .state('test', {

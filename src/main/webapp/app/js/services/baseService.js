@@ -2,7 +2,7 @@
   'use strict';
   define([], function() {
     return ['$resource', function($resource) {
-      return $resource('name', {}, {
+      return $resource('book', {}, {
         get: {method: 'GET', isArray: true}
       });
     }];

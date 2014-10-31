@@ -5,11 +5,23 @@
       function($scope, $cookies, $location, baseService) {
         $scope.test = "aaaaa";
         $cookies.test = "test";
-        $scope.nameList = baseService.get();
+        $scope.bookList = baseService.get();
         $scope.now = new Date();
         
-        $scope.toEee = function() {
-          
+        $scope.reload = function() {
+          $scope.bookList = baseService.get();
+        };
+        
+        $scope.onTitleClick = function(item) {
+          if (item.$clicked) {
+            item.$clicked = false;
+          } else {
+            angular.forEach($scope.bookList, function(book) {
+              if (item !== book)
+                book.$clicked = false;
+            });
+            item.$clicked = true;
+          }
         };
     }];
   });

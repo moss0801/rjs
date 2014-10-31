@@ -2,36 +2,14 @@
 <html th:lang="${#locale.language}" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <base th:href="@{/}"></base>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 <title>Insert title here</title>
 <script type="text/javascript" th:inline="javascript">
-/*<![CDATA[*/  
-// '/'없이 queryString이 있는 경우 ui-router를 위한 url 보정
-var indexQueryString = document.URL.indexOf("?");
-var newUrl = null;
-if (indexQueryString > 0 && document.URL.substring(indexQueryString - 1, indexQueryString) !== "/") {
-  newUrl = document.URL.substring(0, indexQueryString) + "/" + document.URL.substring(indexQueryString);
-  if (window.history.replaceState) {
-    // history api를 지원하는 경우
-    window.history.replaceState("", document.title, newUrl.substring(newUrl.indexOf("/", newUrl.indexOf(document.domain))));  
-  }
-}
-
-// history api를 지원하지 않는 경우 (IE9 이하)
-if (undefined === window.history.replaceState) {
-  //baseTag가 동작하도록 설정
-  //Fix for IE ignoring relative base tags.
-  var baseTag = document.getElementsByTagName('base')[0];
-  if (baseTag) {
-    baseTag.href = baseTag.href;
-  }
-
-  var targetUrl = null !== newUrl ? newUrl : document.URL;
-  if (targetUrl.indexOf("/#/") < 0) {
-    location.href = baseTag.href + "#/" + targetUrl.substring(baseTag.href.length);
-  }
-}
-/*]]>*/
 </script>
 <script type="text/javascript" th:inline="javascript">
 
@@ -42,6 +20,11 @@ if (undefined === window.history.replaceState) {
   appProperties.jsLocale = appProperties.locale.replace('_', '-').toLowerCase();
   /*]]>*/
 </script>
+<style>
+.clicked {
+  background-color: red;
+}
+</style>
 </head>
 <body ng-controller="baseController">
 <a href="" ui-sref="home">home</a>
