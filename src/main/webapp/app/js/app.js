@@ -9,11 +9,13 @@
     'js/services/baseService',
     // controller
     'js/controllers/baseController',
+    'js/controllers/slyController',
     'angular-ui-router',
   ], function(angular, routes, messageList,
       rjsScrollerDirective,
       baseService,
-      baseController) {
+      baseController,
+      slyController) {
     var app = angular.module('app', ['ngResource', 'ngCookies', 'ui.router', 'pascalprecht.translate'])
       .config(routes)
       .config(function ($translateProvider) {
@@ -23,6 +25,7 @@
       .directive('rjsScroller', rjsScrollerDirective)
       .service('baseService', baseService)
       .controller('baseController', baseController)
+      .controller('slyController', slyController)
       .value('test', 'test')
       
       ;
