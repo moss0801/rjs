@@ -23,6 +23,10 @@
             item.$clicked = true;
           }
         };
+        
+        $scope.addTest = function(input) {
+          $scope.test += input; 
+        };
     }];
   });
 })(define);

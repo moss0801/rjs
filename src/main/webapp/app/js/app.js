@@ -4,6 +4,7 @@
     'js/routes',
     'text!messageList',
     // directvie
+    'js/directives/rjsInput',
     'js/directives/rjsScroller',
     // service
     'js/services/baseService',
@@ -12,7 +13,7 @@
     'js/controllers/slyController',
     'angular-ui-router',
   ], function(angular, routes, messageList,
-      rjsScrollerDirective,
+      rjsInputDirective, rjsScrollerDirective,
       baseService,
       baseController,
       slyController) {
@@ -22,6 +23,7 @@
         $translateProvider.translations('en', angular.fromJson(messageList));
         $translateProvider.preferredLanguage('en');
       })
+      .directive('rjsInput', rjsInputDirective)
       .directive('rjsScroller', rjsScrollerDirective)
       .service('baseService', baseService)
       .controller('baseController', baseController)

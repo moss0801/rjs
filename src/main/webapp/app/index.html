@@ -10,9 +10,6 @@
 <meta http-equiv="Expires" content="0" />
 <title>Insert title here</title>
 <script type="text/javascript" th:inline="javascript">
-</script>
-<script type="text/javascript" th:inline="javascript">
-
   /*<![CDATA[*/
   var appProperties = {
     locale: /*[[${#locale.toString()}]]*/
@@ -20,6 +17,16 @@
   appProperties.jsLocale = appProperties.locale.replace('_', '-').toLowerCase();
   /*]]>*/
 </script>
+<!--[if lte IE 9]>
+<script type="text/javascript">
+//baseTag가 동작하도록 설정
+//Fix for IE ignoring relative base tags.
+var baseTag = document.getElementsByTagName('base')[0];
+if (baseTag) {
+  baseTag.href = baseTag.href;
+}
+</script>
+<![endif]-->
 <style>
 .clicked {
   background-color: red;
@@ -27,9 +34,9 @@
 </style>
 </head>
 <body ng-controller="baseController">
-<a href="" ui-sref="home">home</a>
-<a href="" ui-sref="test">test</a>
-<a href="" ui-sref="sly">sly</a>
+<a ui-sref="home">home</a>
+<a ui-sref="test">test</a>
+<a ui-sref="sly">sly</a>
 <div ui-view=""></div>
 <script data-main="app/js/main" src="bower_components/requirejs/require.js"></script>
 <!-- <script type="text/javascript" src="dist/main.js"></script> -->
