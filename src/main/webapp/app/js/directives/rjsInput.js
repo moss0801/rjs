@@ -9,7 +9,7 @@
             // enter
             if (13 === e.keyCode) {
               scope.$apply(function() {
-                $interpolate('{{' + attrs.rjsInput + '}}')(scope);
+                $interpolate($interpolate.startSymbol() + attrs.rjsInput + $interpolate.endSymbol())(scope);
               });
               e.stopPropagation();
             }
