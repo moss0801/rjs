@@ -11,6 +11,7 @@
               scope.$apply(function() {
                 $interpolate('{{' + attrs.rjsInput + '}}')(scope);
               });
+              e.stopPropagation();
             }
           });
           
