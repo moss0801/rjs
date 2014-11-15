@@ -5,9 +5,6 @@ import java.util.Map;
 
 import org.springframework.util.Assert;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class ErrorCodeManager {
     private Map<Integer, ErrorCode<?>> errorCodeMap = new HashMap<Integer, ErrorCode<?>>();
     
@@ -22,15 +19,17 @@ public class ErrorCodeManager {
         // errorCodeMap에 ErrorCode 등록
         for (Object value : errorCodeClass.getEnumConstants()) {
             ErrorCode<?> errorCode = (ErrorCode<?>)value;
-            // 등록여부 확인
+            // Code 등록여부 확인
             int code = errorCode.getCode();
-            if (errorCodeMap.containsKey(errorCode.getCode())) {
-                ErrorCode<?> addedErrorCode = errorCodeMap.get(code);
-                log.error("### errorCode is already added. code={}, addedErrorCode={}, failErrorCode={}",
-                        code, addedErrorCode.getClass().getSimpleName() + "." + addedErrorCode.name(), errorCode.getClass().getSimpleName() + "." + errorCode.name());
-            } else {
-                errorCodeMap.put(errorCode.getCode(), errorCode);
+            ErrorCode<?> addedErrorCode = errorCodeMap.get(code);
+            if (null != addedErrorCode) {
+                Assert.isNull(addedErrorCode, "### errorCode is already added. code=" + code 
+                        + ", addedErrorCode=" + addedErrorCode.getClass().getSimpleName() + "." + addedErrorCode.name()
+                        + ", failErrorCode=" + errorCode.getClass().getSimpleName() + "." + errorCode.name());
             }
+            
+            // ErrorCode 등록
+            errorCodeMap.put(errorCode.getCode(), errorCode);
         }
     }
     
