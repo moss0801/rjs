@@ -29,6 +29,14 @@
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.14.8</version>
+      <scope>provided</scope>
+    </dependency>
+
+
     <!-- Logging -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -61,7 +69,7 @@
       <artifactId>javax.inject</artifactId>
       <version>${inject.version}</version>
     </dependency>
-    
+
     <!-- Servlet -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -107,7 +115,7 @@
       <artifactId>jackson-annotations</artifactId>
       <version>${jackson2.version}</version>
     </dependency>
-    
+
     <!-- DB -->
     <dependency>
       <groupId>org.mybatis</groupId>
