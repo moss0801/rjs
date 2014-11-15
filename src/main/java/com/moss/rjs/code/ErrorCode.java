@@ -5,7 +5,7 @@ package com.moss.rjs.code;
  * @author moss
  *
  */
-public interface ErrorCode<T> {
+public interface ErrorCode<T extends Enum<?>> {
     
     int getCode();
     

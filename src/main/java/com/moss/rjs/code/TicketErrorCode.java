@@ -4,7 +4,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public enum TicketErrorCode implements ErrorCode<TicketErrorCode>{
     CCC(1000),
-    DDD(1001)
+    DDD(1001),
+    DDDE(1)
     ;
     
     TicketErrorCode(int code) {
