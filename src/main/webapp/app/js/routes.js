@@ -2,8 +2,9 @@ define([
   'text!templates/home.html',
   'text!templates/test.html',
   'text!templates/sly.html',
+  'text!templates/scroll.html',
   'text!templates/input.html'
-  ], function (home, test, sly, input) {
+  ], function (home, test, sly, scroll, input) {
   'use strict';
   return ['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function ($locationProvider, $stateProvider, $urlRouterProvider) {
@@ -22,6 +23,11 @@ define([
           url: '/sly',
           controller: 'slyController',
           template: sly
+        })
+        .state('scroll', {
+          url: '/scroll',
+          controller: 'scrollController',
+          template: scroll
         })
         .state('input', {
           url: '/input',

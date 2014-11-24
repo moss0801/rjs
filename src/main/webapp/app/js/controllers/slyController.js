@@ -3,10 +3,10 @@
   define([], function() {
     return ['$scope', 'baseService',
       function($scope, baseService) {
-        $scope.bookList = baseService.get();
+        $scope.bookList = baseService.list();
         
         $scope.reload = function() {
-          $scope.bookList = baseService.get();
+          $scope.bookList = baseService.list();
         };
         
         $scope.onTitleClick = function(item) {

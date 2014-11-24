@@ -1,0 +1,9 @@
+<div style="margin-bottom: 100px;">
+  <div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+    <div ng-repeat='item in list'>
+      <h3>{{item.title}}</h3>
+      <div>{{item.content}}</div>
+    </div>
+    <div ng-show='busy'>Loading data...</div>
+  </div>
+</div>

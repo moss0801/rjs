@@ -55,14 +55,15 @@ public class HomeController {
 	
 	@ResponseBody
     @RequestMapping(value="book", method=RequestMethod.GET)
-    public List<Book> getBookList() {
+    public List<Book> getBookList() throws InterruptedException {
         List<Book> list = new ArrayList<Book>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             Book book = new Book();
             book.setTitle("book title" + i);
             book.setContent("book content" + i);
             list.add(book);
         }
+        Thread.sleep(1000);
         return list;
     }
 	

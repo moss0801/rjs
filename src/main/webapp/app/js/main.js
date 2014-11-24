@@ -4,6 +4,7 @@ require.config({
   baseUrl: 'app',
   paths: {
     'text': '../bower_components/requirejs-text/text',
+    'jquery': '../bower_components/jquery/dist/jquery.min',
     'angular': '../bower_components/angular/angular',
     'angular-i18n_en-us': 'i18n/angular-locale_en-us',
     'angular-i18n_ko-kr': 'i18n/angular-locale_ko-kr',
@@ -13,10 +14,14 @@ require.config({
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
     'angular-translate': '../bower_components/angular-translate/angular-translate',
     'angular-translate-loader-static-files': '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files',
+    'ngInfiniteScroll': '../bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min',
     'messageList' : '../message/' + appProperties.locale + ".json"
   },
   //angular does not support AMD out of the box, put it in a shim
   shim: {
+    'jquery': {
+      exports: 'jquery'
+    },
     'angular': {
       exports: 'angular'
     },
@@ -40,6 +45,9 @@ require.config({
     },
     'angular-translate': {
       deps: ['angular']
+    },
+    'ngInfiniteScroll': {
+      deps: ['angular', 'jquery']
     }
   }
 });
@@ -47,20 +55,28 @@ require.config({
 // bootstarp angular
 require([
          'text',
+         'jquery',
          'angular',
          'js/app',
          'angular-resource',
          'angular-cookies',
          'angular-ui-router',
-         'angular-translate'], function (text, angular, app) {
-  angular.bootstrap(document, ['app']);
+         'angular-translate',
+         'ngInfiniteScroll'], function (text, $, angular, app) {
+  //i18n 설정
+  if ('ko' === appProperties.jsLocale) {
+    require(['angular-i18n_ko'], function(i18n) {
+      angular.bootstrap(document, ['app']);
+    });
+  } else if ('ko_KR' === appProperties.jsLocale) {
+    require(['angular-i18n_ko-kr'], function(i18n) {
+      angular.bootstrap(document, ['app']);
+    });
+  } else if ('en-us' === appProperties.jsLocale) {
+    require(['angular-i18n_en-us'], function(i18n) {
+      angular.bootstrap(document, ['app']);
+    });
+  }
+  
 });
 
-// i18n 설정
-if ('ko' === appProperties.jsLocale) {
-  require(['angular-i18n_ko'], function(i18n) {});
-} else if ('ko_KR' === appProperties.jsLocale) {
-  require(['angular-i18n_ko-kr'], function(i18n) {});
-} else if ('en-us' === appProperties.jsLocale) {
-  require(['angular-i18n_en-us'], function(i18n) {});
-}
