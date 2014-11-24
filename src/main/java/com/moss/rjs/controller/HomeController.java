@@ -63,7 +63,7 @@ public class HomeController {
             book.setContent("book content" + i);
             list.add(book);
         }
-        Thread.sleep(1000);
+        Thread.sleep(150);
         return list;
     }
 	

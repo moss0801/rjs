@@ -1,9 +1,33 @@
 <div style="margin-bottom: 100px;">
   <div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
-    <div ng-repeat='item in list'>
-      <h3>{{item.title}}</h3>
-      <div>{{item.content}}</div>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Price</th>
+          <th>Sale Price</th>
+          <th>ISBN</th>
+          <th>Publish Date</th>
+          <th>Page</th>
+          <th>Weight</th>
+          <th>Sale Point</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='item in list'>
+          <td>{{item.title}}</td>
+          <td>{{item.content}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.salePrice}}</td>
+          <td>{{item.isbn}}</td>
+          <td>{{item.publishDate | date}}</td>
+          <td>{{item.page}}</td>
+          <td>{{item.weight}}</td>
+          <td>{{item.salePoint}}</td>
+        </tr>
+      </tbody>
+    </table>
     <div ng-show='busy'>Loading data...</div>
   </div>
 </div>
