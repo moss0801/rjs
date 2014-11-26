@@ -3,8 +3,9 @@ define([
   'text!templates/test.html',
   'text!templates/sly.html',
   'text!templates/scroll.html',
+  'text!templates/dynamicColumn.html',
   'text!templates/input.html'
-  ], function (home, test, sly, scroll, input) {
+  ], function (home, test, sly, scroll, dynamicColumn, input) {
   'use strict';
   return ['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function ($locationProvider, $stateProvider, $urlRouterProvider) {
@@ -28,6 +29,11 @@ define([
           url: '/scroll',
           controller: 'scrollController',
           template: scroll
+        })
+        .state('dynamicColumn', {
+          url: '/dynamicColumn',
+          controller: 'dynamicColumnController',
+          template: dynamicColumn
         })
         .state('input', {
           url: '/input',

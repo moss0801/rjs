@@ -1,0 +1,13 @@
+<div infinite-scroll="nextPage()" infinite-scroll-disabled="busy" infinite-scroll-distance="0">
+  <table>
+    <thead>
+      <tr>
+        <th ng-repeat="column in columnList">{{column}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="book in bookList" rjs-dynamic-column="" column-list="columnList" >
+      </tr>
+    </tbody>
+  </table>
+</div>
