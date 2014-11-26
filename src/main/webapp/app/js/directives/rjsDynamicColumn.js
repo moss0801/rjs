@@ -12,6 +12,10 @@
               pre: function preLink(scope, element, attrs, controller) {
                 scope.columnList = scope.$eval(attrs.columnList);
                 
+                scope.alert = function(value) {
+                  alert(value);
+                };
+                
                 var template = $templateCache.get('app/templates/rjsDynamicColumn.html');
                 var templateElement = angular.element(template[1]);
                 
