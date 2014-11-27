@@ -9,16 +9,18 @@
     'js/directives/rjsScroller',
     // service
     'js/services/baseService',
+    'js/services/ticketService',
     // controller
     'js/controllers/baseController',
     'js/controllers/slyController',
     'js/controllers/scrollController',
     'js/controllers/dynamicColumnController',
+    'js/controllers/ticketTableController',
     'angular-ui-router',
   ], function(angular, routes, messageList,
       rjsInputDirective, rjsDynamicColumnDirective, rjsScrollerDirective,
-      baseService,
-      baseController, slyController, scrollController, dynamicColumnController) {
+      baseService, ticketService,
+      baseController, slyController, scrollController, dynamicColumnController, ticketTableController) {
     var app = angular.module('app', ['ngResource', 'ngCookies', 'ui.router', 'pascalprecht.translate', 'infinite-scroll'])
       .config(routes)
       .config(function ($translateProvider) {
@@ -29,10 +31,12 @@
       .directive('rjsDynamicColumn', rjsDynamicColumnDirective)
       .directive('rjsScroller', rjsScrollerDirective)
       .service('baseService', baseService)
+      .service('ticketService', ticketService)
       .controller('baseController', baseController)
       .controller('slyController', slyController)
       .controller('scrollController', scrollController)
       .controller('dynamicColumnController', dynamicColumnController)
+      .controller('ticketTableController', ticketTableController)
       .value('test', 'test')
       
       ;

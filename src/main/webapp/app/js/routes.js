@@ -4,8 +4,9 @@ define([
   'text!templates/sly.html',
   'text!templates/scroll.html',
   'text!templates/dynamicColumn.html',
+  'text!templates/ticketTable.html',
   'text!templates/input.html'
-  ], function (home, test, sly, scroll, dynamicColumn, input) {
+  ], function (home, test, sly, scroll, dynamicColumn, ticketTable, input) {
   'use strict';
   return ['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function ($locationProvider, $stateProvider, $urlRouterProvider) {
@@ -34,6 +35,11 @@ define([
           url: '/dynamicColumn',
           controller: 'dynamicColumnController',
           template: dynamicColumn
+        })
+        .state('ticketTable', {
+          url: '/ticketTable',
+          controller: 'ticketTableController',
+          template: ticketTable
         })
         .state('input', {
           url: '/input',
