@@ -1,1 +1,20 @@
-<div ng-include="tableTemplateUrl"></div>
+<table class="table">
+  <thead>
+    <tr>
+      <th th:each="column : ${columnList}" th:class="${column}">
+        <span th:if="${column == 'No'}" >No</span>
+        <span th:if="${column == 'Subject'}" >Subject</span>
+        <span th:if="${column == 'CreateDate'}" >Create Date</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="ticket in ticketList">
+      <td th:each="column : ${columnList}" th:class="${column}">
+        <span th:if="${column == 'No'}" >{{ticket.no}}</span>
+        <span th:if="${column == 'Subject'}" >{{ticket.subject}}</span>
+        <span th:if="${column == 'CreateDate'}" >{{ticket.createDate | date}}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

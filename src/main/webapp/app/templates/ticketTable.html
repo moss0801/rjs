@@ -1,20 +1,8 @@
-<div>
-  <!-- <table>
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Subject</th>
-        <th>Create Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="ticket in ticketList">
-        <td>{{ticket.no}}</td>
-        <td>{{ticket.subject}}</td>
-        <td>{{ticket.createDate | date}}</td>
-      </tr>
-    </tbody>
-  </table> -->
+<div class="container">
+  <div>
+    <buuton class="btn btn-default" ng-click="firstColumn()">First</buuton>
+    <buuton class="btn btn-default" ng-click="secondColumn()">Second</buuton>
+  </div>
   <hr />
-  <ticket-table ticket-list="ticketList" column-list="ticketColumnList"></ticket-table>
+  <ticket-table ticket-list="ticketList" column-list="ticketColumnList" />
 </div>

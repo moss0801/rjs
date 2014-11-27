@@ -4,13 +4,13 @@
     return ['$interpolate', '$log', function($interpolate, $log) {
       return {
         restrict: 'E',
-        templateUrl: 'app/templates/directives/ticketTable.html',
+        template: '<div ng-include="tableTemplateUrl"></div>',
         scope: {
           ticketList: '=',
           columnList: '='
         },
         link: function(scope, element, attrs, ctrl){
-          var baseTemplateUrl = 'app/templates/directives/ticketTableInclude.html';
+          var baseTemplateUrl = 'app/templates/directives/ticketTable.html';
           // 
           
           // column list에 따라 temlate 변경

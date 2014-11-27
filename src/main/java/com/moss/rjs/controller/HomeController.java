@@ -74,11 +74,11 @@ public class HomeController {
 	    return messageMapSource.getMessageMap(locale);
 	}
 	
-	@RequestMapping(value="app/templates/directives/ticketTableInclude.html", method=RequestMethod.GET)
+	@RequestMapping(value="app/templates/directives/ticketTable.html", method=RequestMethod.GET)
 	public ModelAndView ticketTableTemplate(@RequestParam(required=false) List<String> columnList) {
 	    ModelAndView mav = new ModelAndView();
 	    mav.addObject("columnList", columnList);
-	    mav.setViewName("templates/directives/ticketTableInclude");
+	    mav.setViewName("templates/directives/ticketTable");
 	    return mav;
 	}
 }

@@ -4,9 +4,16 @@
     return ['$scope', 'ticketService',
       function($scope, ticketService) {
         $scope.ticketList = ticketService.list();
-        // do something
         
-        $scope.ticketColumnList = ['Subject', 'Subject', 'No'];
+        $scope.ticketColumnList = [];
+        
+        $scope.firstColumn = function() {
+          $scope.ticketColumnList = ['No', 'CreateDate', 'Subject'];
+        };
+        
+        $scope.secondColumn = function() {
+          $scope.ticketColumnList = ['No', 'Subject', 'CreateDate'];
+        };
     }];
   });
 })(define);
