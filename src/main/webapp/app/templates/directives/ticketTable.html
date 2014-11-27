@@ -1,9 +1,13 @@
-<table class="table">
+<!--/* 성능 향상을 위해서 Thymeleaf로 처리함 */-->
+<table>
   <thead>
     <tr>
       <th th:each="column : ${columnList}" th:class="${column}">
+        <!--/* No */-->
         <span th:if="${column == 'No'}" >No</span>
+        <!--/* Subject */-->
         <span th:if="${column == 'Subject'}" >Subject</span>
+        <!--/* CreateDate */-->
         <span th:if="${column == 'CreateDate'}" >Create Date</span>
       </th>
     </tr>
@@ -11,8 +15,11 @@
   <tbody>
     <tr ng-repeat="ticket in ticketList">
       <td th:each="column : ${columnList}" th:class="${column}">
+        <!--/* No */-->
         <span th:if="${column == 'No'}" >{{ticket.no}}</span>
+        <!--/* Subject */-->
         <span th:if="${column == 'Subject'}" >{{ticket.subject}}</span>
+        <!--/* CreateDate */-->
         <span th:if="${column == 'CreateDate'}" >{{ticket.createDate | date}}</span>
       </td>
     </tr>

@@ -4,7 +4,8 @@
     return ['$interpolate', '$log', function($interpolate, $log) {
       return {
         restrict: 'E',
-        template: '<div ng-include="tableTemplateUrl"></div>',
+        template: '<table ng-include="tableTemplateUrl"></table>',
+        replace: true,
         scope: {
           ticketList: '=',
           columnList: '='
