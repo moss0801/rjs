@@ -1,0 +1,20 @@
+<div>
+  <!-- <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Subject</th>
+        <th>Create Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="ticket in ticketList">
+        <td>{{ticket.no}}</td>
+        <td>{{ticket.subject}}</td>
+        <td>{{ticket.createDate | date}}</td>
+      </tr>
+    </tbody>
+  </table> -->
+  <hr />
+  <ticket-table ticket-list="ticketList" column-list="ticketColumnList"></ticket-table>
+</div>

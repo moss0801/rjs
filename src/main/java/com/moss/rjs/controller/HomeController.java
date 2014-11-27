@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -71,5 +72,13 @@ public class HomeController {
     @RequestMapping(value="message/{locale}.json", method=RequestMethod.GET)
 	public Map<String, String> getMessageList(@PathVariable Locale locale) {
 	    return messageMapSource.getMessageMap(locale);
+	}
+	
+	@RequestMapping(value="app/templates/directives/ticketTableInclude.html", method=RequestMethod.GET)
+	public ModelAndView ticketTableTemplate(@RequestParam(required=false) List<String> columnList) {
+	    ModelAndView mav = new ModelAndView();
+	    mav.addObject("columnList", columnList);
+	    mav.setViewName("templates/directives/ticketTableInclude");
+	    return mav;
 	}
 }
