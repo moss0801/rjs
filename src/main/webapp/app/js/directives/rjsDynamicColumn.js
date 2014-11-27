@@ -3,10 +3,12 @@
   define(['angular'], function(angular) {
     return ['$compile', '$templateCache', '$http', '$log',
       function($compile, $templateCache, $http, $log) {
+        var templateUrl = 'app/templates/rjsDynamicColumn.html';
+        var columnNameAttrName = 'column-name';
         return {
           restrict: 'A',
           priority: 1001,
-          templateUrl: 'app/templates/rjsDynamicColumn.html',
+          templateUrl: templateUrl,
           compile: function compile(element, attrs, transclude) {
             return {
               pre: function preLink(scope, element, attrs, controller) {
@@ -17,7 +19,7 @@
                 };
                 
                 // compile time에 template을 로드할 수 있도록 templateUrl에 지정 후, 다시 로드
-                var template = $templateCache.get('app/templates/rjsDynamicColumn.html');
+                var template = $templateCache.get(templateUrl);
                 var templateElement = angular.element(template[1]);
                 // 기존 template 제거
                 element.html('');
@@ -26,8 +28,8 @@
                 for (var i = 0; i < scope.columnList.length; i++) {
                   for (var j = 0; j < templateElement.length; j += 2) {
                     var target = angular.element(templateElement[j]);
-                    if (scope.columnList[i] === target.attr('column-name')) {
-                      target.removeAttr('column-name');
+                    if (scope.columnList[i] === target.attr(columnNameAttrName)) {
+                      target.removeAttr(columnNameAttrName);
                       
                       element.append(target);
                       element.addClass(scope.columnList[i]);
