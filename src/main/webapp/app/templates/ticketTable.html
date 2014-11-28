@@ -4,5 +4,9 @@
     <buuton class="btn btn-default" ng-click="secondColumn()">Second</buuton>
   </div>
   <hr />
-  <ticket-table class="table" ticket-list="ticketList" column-list="ticketColumnList" />
+  <table 
+    infinite-scroll="nextPage()" infinite-scroll-disabled="busy" 
+    class="table" 
+    ng-include="viewTemplateurl">
+  </table>
 </div>

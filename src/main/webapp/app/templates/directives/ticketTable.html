@@ -5,10 +5,22 @@
       <th th:each="column : ${columnList}" th:class="${column}">
         <!--/* No */-->
         <span th:if="${column == 'No'}" >No</span>
+        <!--/* Important */-->
+        <span th:if="${column == 'Important'}" ><i class="fa fa-star"></i></span>
         <!--/* Subject */-->
         <span th:if="${column == 'Subject'}" >Subject</span>
+        <!--/* Service */-->
+        <span th:if="${column == 'Service'}" >Service</span>
+        <!--/* InquiryType */-->
+        <span th:if="${column == 'InquiryType'}" >InquiryType</span>
+        <!--/* Channel */-->
+        <span th:if="${column == 'Channel'}" >Channel</span>
         <!--/* CreateDate */-->
         <span th:if="${column == 'CreateDate'}" >Create Date</span>
+        <!--/* Assignee */-->
+        <span th:if="${column == 'Assignee'}" >Assignee</span>
+        <!--/* SolveDate */-->
+        <span th:if="${column == 'SolveDate'}" >Solve Date</span>
       </th>
     </tr>
   </thead>
@@ -17,10 +29,29 @@
       <td th:each="column : ${columnList}" th:class="${column}">
         <!--/* No */-->
         <span th:if="${column == 'No'}" >{{ticket.no}}</span>
+        <!--/* Important */-->
+        <span th:if="${column == 'Important'}">
+          <i ng-if="true === ticket.important" class="fa fa-star"></i>
+          <i ng-if="true !== ticket.important" class="fa fa-star-o"></i>
+        </span>
         <!--/* Subject */-->
-        <span th:if="${column == 'Subject'}" >{{ticket.subject}}</span>
+        <span th:if="${column == 'Subject'}" >
+          <span ng-if="ticket.hasNote">I</span>
+          <span ng-if="ticket.isReInquiry">Re</span>
+          {{ticket.subject}}
+        </span>
+        <!--/* Service */-->
+        <span th:if="${column == 'Service'}" >{{ticket.serviceNo}}</span>
+        <!--/* InquiryType */-->
+        <span th:if="${column == 'InquiryType'}" >{{ticket.inquiryTypeNo}}</span>
+        <!--/* Channel */-->
+        <span th:if="${column == 'Channel'}" >{{ticket.channelNo}}</span>
         <!--/* CreateDate */-->
         <span th:if="${column == 'CreateDate'}" >{{ticket.createDate | date}}</span>
+        <!--/* Assignee */-->
+        <span th:if="${column == 'Assignee'}" >{{ticket.assignee}}</span>
+        <!--/* SolveDate */-->
+        <span th:if="${column == 'SolveDate'}" >{{ticket.solveDate | date}}</span>
       </td>
     </tr>
   </tbody>

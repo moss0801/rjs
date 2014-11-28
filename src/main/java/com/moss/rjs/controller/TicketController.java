@@ -17,17 +17,26 @@ public class TicketController {
     private List<Ticket> ticketList = new ArrayList<Ticket>();
     
     public TicketController() {
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 100; i++) {
             Ticket ticket = new Ticket();
-            ticket.setNo(i);
-            ticket.setSubject("Subject " + i);
+            ticket.setNo(1000000+i);
+            ticket.setImportant(1 == i % 2 ? true : false);
+            ticket.setHasNote(1 == i % 2 ? true : false);
+            ticket.setIsReInquiry(1 == i % 2 ? true : false);
+            ticket.setSubject("Subject Subject " + i);
             ticket.setCreateDate(new Date());
+            ticket.setSolveDate(new Date());
+            ticket.setServiceNo(i*10);
+            ticket.setInquiryTypeNo(i*100);
+            ticket.setChannelNo(i*1000);
+            ticket.setAssignee("Assignee " + i);
             ticketList.add(ticket);
         }
     }
     
     @RequestMapping(value="", method=RequestMethod.GET)
-    public List<Ticket> getTicketList() {
+    public List<Ticket> getTicketList() throws InterruptedException {
+        Thread.sleep(160);
         return ticketList;
     }
     
