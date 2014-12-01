@@ -1,9 +1,9 @@
 (function(define) {
   'use strict';
   define([], function() {
-    return ['$scope', 'baseService',
-      function($scope, baseService) {
-        $scope.list = [];
+    return ['$scope',
+      function($scope) {
+        /*$scope.list = [];
         $scope.busy = false;
         
         $scope.nextPage = function() {
@@ -13,7 +13,7 @@
             $scope.list = $scope.list.concat(result);
             $scope.busy = false;
           });
-        };
+        };*/
     }];
   });
 })(define);

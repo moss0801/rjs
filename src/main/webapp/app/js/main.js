@@ -14,6 +14,7 @@ require.config({
     'angular-ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
     'angular-translate': '../bower_components/angular-translate/angular-translate',
     'angular-translate-loader-static-files': '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files',
+    'angular-boostrap': '../bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
     'ngInfiniteScroll': '../bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min',
     'messageList' : '../message/' + appProperties.locale + ".json",
     'tinymce': '../bower_components/tinymce/tinymce.min',
@@ -25,7 +26,8 @@ require.config({
       exports: 'jquery'
     },
     'angular': {
-      exports: 'angular'
+      exports: 'angular',
+      deps: ['tinymce']
     },
     'angular-i18n_en-us': {
       deps: ['angular']
@@ -51,8 +53,14 @@ require.config({
     'ngInfiniteScroll': {
       deps: ['angular', 'jquery']
     },
+    'tinymce': {
+      exports: 'tinymce'
+    },
+    'angular-boostrap': {
+      deps: ['angular']
+    },
     'angular-ui-tinymce': {
-      deps: ['angular', 'tinymce']
+      deps: ['angular', 'tinymce', 'angular-boostrap']
     }
   }
 });
@@ -63,12 +71,13 @@ require([
          'jquery',
          'angular',
          'js/app',
+         'tinymce',
          'angular-resource',
          'angular-cookies',
          'angular-ui-router',
          'angular-translate',
          'ngInfiniteScroll',
-         'angular-ui-tinymce'], function (text, $, angular, app) {
+         'angular-ui-tinymce'], function (text, $, angular, app, tinymce) {
   //i18n 설정
   if ('ko' === appProperties.jsLocale) {
     require(['angular-i18n_ko'], function(i18n) {

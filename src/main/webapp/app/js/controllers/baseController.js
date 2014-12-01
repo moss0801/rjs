@@ -1,9 +1,9 @@
 (function(define) {
   'use strict';
   define([], function() {
-    return ['$scope', '$cookies', '$location', 'baseService',
-      function($scope, $cookies, $location, baseService) {
-        $scope.test = "aaaaa";
+    return ['$scope', '$cookies', '$location', 
+      function($scope, $cookies, $location) {
+        /*$scope.test = "aaaaa";
         $cookies.test = "test";
         $scope.bookList = baseService.get();
         $scope.now = new Date();
@@ -26,7 +26,7 @@
         
         $scope.addTest = function(input) {
           $scope.test += input; 
-        };
+        };*/
     }];
   });
 })(define);

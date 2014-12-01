@@ -9,7 +9,7 @@
     'js/directives/rjsScroller',
     'js/directives/ticketTable',
     // service
-    'js/services/baseService',
+    //'js/services/baseService',
     'js/services/ticketService',
     // controller
     'js/controllers/baseController',
@@ -17,13 +17,12 @@
     'js/controllers/scrollController',
     'js/controllers/dynamicColumnController',
     'js/controllers/ticketTableController',
-    'js/controllers/tinymceController',
-    'angular-ui-router',
+    'js/controllers/tinymceController'
   ], function(angular, routes, messageList,
       rjsInputDirective, rjsDynamicColumnDirective, rjsScrollerDirective, ticketTableDirective,
-      baseService, ticketService,
+      ticketService,
       baseController, slyController, scrollController, dynamicColumnController, ticketTableController, tinymceController) {
-    var app = angular.module('app', ['ngResource', 'ngCookies', 'ui.router', 'pascalprecht.translate', 'infinite-scroll', 'ui.tinymce'])
+    var app = angular.module('app', ['ngResource', 'ngCookies', 'ui.router', 'pascalprecht.translate', 'infinite-scroll', 'ui.bootstrap', 'ui.tinymce'])
       .config(routes)
       .config(function ($translateProvider) {
         $translateProvider.translations('en', angular.fromJson(messageList));
@@ -33,7 +32,7 @@
       .directive('rjsDynamicColumn', rjsDynamicColumnDirective)
       .directive('rjsScroller', rjsScrollerDirective)
       .directive('ticketTable', ticketTableDirective)
-      .service('baseService', baseService)
+      //.service('baseService', baseService)
       .service('ticketService', ticketService)
       .controller('baseController', baseController)
       .controller('slyController', slyController)

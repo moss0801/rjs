@@ -1,9 +1,9 @@
 (function(define) {
   'use strict';
   define([], function() {
-    return ['$scope', 'baseService',
-      function($scope, baseService) {
-        $scope.bookList = baseService.list();
+    return ['$scope', 
+      function($scope) {
+        /*$scope.bookList = baseService.list();
         
         $scope.reload = function() {
           $scope.bookList = baseService.list();
@@ -19,7 +19,7 @@
             });
             item.$clicked = true;
           }
-        };
+        };*/
     }];
   });
 })(define);

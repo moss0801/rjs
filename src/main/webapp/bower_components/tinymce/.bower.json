@@ -1,14 +1,30 @@
 {
   "name": "tinymce",
-  "homepage": "https://github.com/jozzhart/tinymce",
-  "version": "4.0.0",
-  "_release": "4.0.0",
+  "version": "4.1.7",
+  "description": "Web based JavaScript HTML WYSIWYG editor control.",
+  "license": "http://www.tinymce.com/license",
+  "keywords": [
+    "editor",
+    "wysiwyg",
+    "tinymce",
+    "richtext",
+    "javascript",
+    "html"
+  ],
+  "homepage": "http://www.tinymce.com",
+  "main": "tinymce.min.js",
+  "ignore": [
+    "readme.md",
+    "composer.json",
+    "package.json"
+  ],
+  "_release": "4.1.7",
   "_resolution": {
     "type": "version",
-    "tag": "4.0.0",
-    "commit": "cd7412b827e98faaa34e032ab380f2234976fdcc"
+    "tag": "4.1.7",
+    "commit": "555fcfa1a09e93732a51950ba3d731050f31d39a"
   },
-  "_source": "git://github.com/jozzhart/tinymce.git",
-  "_target": "4.0.0",
-  "_originalSource": "git://github.com/jozzhart/tinymce.git"
+  "_source": "git://github.com/tinymce/tinymce-dist.git",
+  "_target": "4.1.7",
+  "_originalSource": "tinymce"
 }
