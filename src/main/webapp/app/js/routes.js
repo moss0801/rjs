@@ -15,7 +15,7 @@ define([
       $urlRouterProvider.otherwise("/");
       $stateProvider
         .state('home', {
-          url: '/?test',
+          url: '/',
           template: home
         })
         .state('test', {

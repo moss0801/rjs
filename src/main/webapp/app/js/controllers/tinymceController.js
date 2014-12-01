@@ -1,18 +1,30 @@
 (function(define) {
   'use strict';
-  define([], function() {
+  define(['tinymce'], function(tinymce) {
     return ['$scope',
       function($scope) {
+        $scope.readonly = false;
+        $scope.editor;
+        $scope.showEditor = true;
+        
+        $scope.toggleReadonly = function() {
+          $scope.tinymceOptions.readonly = !$scope.tinymceOptions.readonly;
+        };
+        
+        $scope.toggleEditor = function() {
+          $scope.showEditor = !$scope.showEditor;
+        };
+        
+      
         $scope.tinymceOptions = {
-          resize: false,
-          width: 400,  // I *think* its a number and not '400' string
-          height: 300,
-          plugins: 'print textcolor',
-          toolbar: "undo redo styleselect bold italic print forecolor backcolor"
+          readonly: $scope.readonly,
+          init_instance_callback : function(editor) {
+            $scope.editor = tinymce.get(editor.id);
+          }
         };
         
         $scope.tinymceModel = {
-            one: "test"
+            one: 'test'
         };
     }];
   });

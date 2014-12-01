@@ -1,5 +1,18 @@
 <div>
+  <button class="btn btn-default" ng-click="toggleReadonly()">Readonly</button>
+  <button class="btn btn-default" ng-click="toggleEditor()">ToggleEditor</button>
+  <div>Editor ID: {{editorId}}</div>
+  <div>{{tinymceOptions.readonly}}</div>
+  <div>{{tinymceModel}}</div>
   <form name="tinymceTest" novalidate="">
-    <textarea data-ui-tinymce="" ng-model="tinymceModel.one"></textarea>
+    <div ng-if="showEditor" ng-include="'answerEditor'"></div>
+    <div ng-if="!showEditor" ng-include="'emptyEditor'"></div>
   </form>
+  
+  <script type="text/ng-template" id="answerEditor">
+    <textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel.one"></textarea>
+  </script>
+  <script type="text/ng-template" id="emptyEditor">
+    <div></div>
+  </script>
 </div>
