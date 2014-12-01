@@ -36,7 +36,6 @@ public class TicketController {
     
     @RequestMapping(value="", method=RequestMethod.GET)
     public List<Ticket> getTicketList() throws InterruptedException {
-        Thread.sleep(160);
         return ticketList;
     }
     

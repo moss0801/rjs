@@ -17,12 +17,13 @@
     'js/controllers/scrollController',
     'js/controllers/dynamicColumnController',
     'js/controllers/ticketTableController',
+    'js/controllers/tinymceController',
     'angular-ui-router',
   ], function(angular, routes, messageList,
       rjsInputDirective, rjsDynamicColumnDirective, rjsScrollerDirective, ticketTableDirective,
       baseService, ticketService,
-      baseController, slyController, scrollController, dynamicColumnController, ticketTableController) {
-    var app = angular.module('app', ['ngResource', 'ngCookies', 'ui.router', 'pascalprecht.translate', 'infinite-scroll'])
+      baseController, slyController, scrollController, dynamicColumnController, ticketTableController, tinymceController) {
+    var app = angular.module('app', ['ngResource', 'ngCookies', 'ui.router', 'pascalprecht.translate', 'infinite-scroll', 'ui.tinymce'])
       .config(routes)
       .config(function ($translateProvider) {
         $translateProvider.translations('en', angular.fromJson(messageList));
@@ -39,6 +40,7 @@
       .controller('scrollController', scrollController)
       .controller('dynamicColumnController', dynamicColumnController)
       .controller('ticketTableController', ticketTableController)
+      .controller('tinymceController', tinymceController)
       .value('test', 'test')
       
       ;

@@ -1,26 +1,14 @@
 package com.moss.rjs;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
-
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.maxmind.geoip2.exception.GeoIp2Exception;
-import com.moss.rjs.geolocation.GeoLocation;
-import com.moss.rjs.geolocation.GeoLocationFinder;
 import com.moss.rjs.message.MessageMapSource;
 
 /**
@@ -28,14 +16,13 @@ import com.moss.rjs.message.MessageMapSource;
  * @author moss
  *
  */
-@Slf4j
+@EnableTransactionManagement
 @ComponentScan(
 		basePackages="com.moss",
 		useDefaultFilters=false,
 		includeFilters=@ComponentScan.Filter({Service.class, Repository.class}))
 @Configuration
 public class RootContextConfig {
-    
     private Locale[] localeList = new Locale[] {
             Locale.KOREAN,
             Locale.KOREA,
@@ -50,7 +37,7 @@ public class RootContextConfig {
         return messageMapSource;
     }
     
-    @Bean
+    /*@Bean
     public GeoLocationFinder geoLocationFinder() throws IOException, GeoIp2Exception {
         GeoLocationFinder finder = new GeoLocationFinder();
         
@@ -93,6 +80,6 @@ public class RootContextConfig {
         GeoLocation result = finder.getGeoLocation("112.170.59.43");
         log.debug("{}", result);
         return finder;
-    }
+    }*/
    
 }

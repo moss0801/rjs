@@ -5,8 +5,9 @@ define([
   'text!templates/scroll.html',
   'text!templates/dynamicColumn.html',
   'text!templates/ticketTable.html',
+  'text!templates/tinymce.html',
   'text!templates/input.html'
-  ], function (home, test, sly, scroll, dynamicColumn, ticketTable, input) {
+  ], function (home, test, sly, scroll, dynamicColumn, ticketTable, tinymce, input) {
   'use strict';
   return ['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function ($locationProvider, $stateProvider, $urlRouterProvider) {
@@ -40,6 +41,11 @@ define([
           url: '/ticketTable',
           controller: 'ticketTableController',
           template: ticketTable
+        })
+        .state('tinymce', {
+          url: '/tinymce',
+          controller: 'tinymceController',
+          template: tinymce
         })
         .state('input', {
           url: '/input',

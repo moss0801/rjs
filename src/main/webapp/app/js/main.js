@@ -15,7 +15,9 @@ require.config({
     'angular-translate': '../bower_components/angular-translate/angular-translate',
     'angular-translate-loader-static-files': '../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files',
     'ngInfiniteScroll': '../bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min',
-    'messageList' : '../message/' + appProperties.locale + ".json"
+    'messageList' : '../message/' + appProperties.locale + ".json",
+    'tinymce': '../bower_components/tinymce/tinymce.min',
+    'angular-ui-tinymce': '../bower_components/angular-ui-tinymce/src/tinymce'
   },
   //angular does not support AMD out of the box, put it in a shim
   shim: {
@@ -48,6 +50,9 @@ require.config({
     },
     'ngInfiniteScroll': {
       deps: ['angular', 'jquery']
+    },
+    'angular-ui-tinymce': {
+      deps: ['angular', 'tinymce']
     }
   }
 });
@@ -62,7 +67,8 @@ require([
          'angular-cookies',
          'angular-ui-router',
          'angular-translate',
-         'ngInfiniteScroll'], function (text, $, angular, app) {
+         'ngInfiniteScroll',
+         'angular-ui-tinymce'], function (text, $, angular, app) {
   //i18n 설정
   if ('ko' === appProperties.jsLocale) {
     require(['angular-i18n_ko'], function(i18n) {
