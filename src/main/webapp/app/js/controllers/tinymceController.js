@@ -23,9 +23,10 @@
           }
         };
         
+        // $scope의 변수를 바로 바인딩하면 two-way binding이 먹지 않음
         $scope.tinymceModel = {
-            one: 'test'
-        };
+            one: 'test<br />test'
+        }
     }];
   });
 })(define);
