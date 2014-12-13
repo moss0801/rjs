@@ -1,8 +1,14 @@
 <div>
   <tabset>
-    <tab ng-repeat="tab in tabList" tooltip="tab.tooltip" tooltip-animation="false">
+    <tab ng-repeat="tab in tabList" mg-model="tab" tooltip="tab.tooltip" tooltip-animation="false">
       <tab-heading>{{tab.title}}</tab-heading>
-      <div ng-include="'app/templates/ticketTable.html'"></div>
+      <div>
+        <div>{{tab.tinymceOptions}}</div>
+        <div>{{tab.content}}</div>
+        <form name="tinymceTest" novalidate="">
+          <textarea ui-tinymce="tinymceOptions" ng-model="tab.content"></textarea>
+        </form>
+      </div>
     </tab>
     <tab ng-click="addTab()">
       <tab-heading>Add Tab</tab-heading>
