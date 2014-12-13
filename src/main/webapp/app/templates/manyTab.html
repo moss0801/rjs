@@ -1,0 +1,11 @@
+<div>
+  <tabset>
+    <tab ng-repeat="tab in tabList" tooltip="tab.tooltip" tooltip-animation="false">
+      <tab-heading>{{tab.title}}</tab-heading>
+      <div ng-include="'app/templates/ticketTable.html'"></div>
+    </tab>
+    <tab ng-click="addTab()">
+      <tab-heading>Add Tab</tab-heading>
+    </tab>
+  </tabset>
+</div>

@@ -6,8 +6,9 @@ define([
   'text!templates/dynamicColumn.html',
   'text!templates/ticketTable.html',
   'text!templates/tinymce.html',
+  'text!templates/manyTab.html',
   'text!templates/input.html'
-  ], function (home, test, sly, scroll, dynamicColumn, ticketTable, tinymce, input) {
+  ], function (home, test, sly, scroll, dynamicColumn, ticketTable, tinymce, manyTab, input) {
   'use strict';
   return ['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function ($locationProvider, $stateProvider, $urlRouterProvider) {
@@ -46,6 +47,11 @@ define([
           url: '/tinymce',
           controller: 'tinymceController',
           template: tinymce
+        })
+        .state('manyTab', {
+          url: '/manyTab',
+          controller: 'manyTabController',
+          template: manyTab
         })
         .state('input', {
           url: '/input',

@@ -37,26 +37,29 @@ if (baseTag) {
 </head>
 <body ng-controller="baseController">
 <tabset>
-  <tab  ui-sref-active="active">
-    <tab-heading><a ui-sref="home">Home</a></tab-heading>
+  <tab  ui-sref-active="active" ui-sref="home">
+    <tab-heading><div>Home</div></tab-heading>
   </tab>
-  <tab ui-sref-active="active">
-    <tab-heading><a ui-sref="test">Test</a></tab-heading>
+  <tab ui-sref-active="active" ui-sref="test">
+    <tab-heading>Test</tab-heading>
   </tab>
-  <tab  ui-sref-active="active">
-    <tab-heading><a ui-sref="sly">Sly</a></tab-heading>
+  <tab  ui-sref-active="active" ui-sref="sly">
+    <tab-heading>Sly</tab-heading>
   </tab>
-  <tab ui-sref-active="active">
-    <tab-heading><a ui-sref="scroll">Scroll</a></tab-heading>
+  <tab ui-sref-active="active" ui-sref="scroll">
+    <tab-heading>Scroll</tab-heading>
   </tab>
-  <tab ui-sref-active="active">
-    <tab-heading><a ui-sref="dynamicColumn">DynamicColumn</a></tab-heading>
+  <tab ui-sref-active="active" ui-sref="dynamicColumn">
+    <tab-heading>DynamicColumn</tab-heading>
   </tab>
-  <tab ui-sref-active="active">
-    <tab-heading><a ui-sref="ticketTable">TicketTable</a></tab-heading>
+  <tab ui-sref-active="active" ui-sref="ticketTable">
+    <tab-heading>TicketTable</tab-heading>
   </tab>
-  <tab ui-sref-active="active">
-    <tab-heading><a ui-sref="tinymce">Tinymce</a></tab-heading>
+  <tab ui-sref-active="active" ui-sref="tinymce">
+    <tab-heading>Tinymce</tab-heading>
+  </tab>
+  <tab ui-sref-active="active" ui-sref="manyTab">
+    <tab-heading>Many Tab</tab-heading>
   </tab>
 </tabset>
 <div ui-view=""></div>
