@@ -28,6 +28,7 @@
     "components-font-awesome": "4.2.0",
     "angular-bootstrap": "latest",
     "tinymce": "4.1.7",
-    "angular-ui-tinymce": "latest"
+    "angular-ui-tinymce": "latest",
+    "moxie": "1.2.1"
   }
 }

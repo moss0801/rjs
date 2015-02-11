@@ -1,5 +1,6 @@
 define([
   'text!templates/home.html',
+  'text!templates/valid.html',
   'text!templates/test.html',
   'text!templates/sly.html',
   'text!templates/scroll.html',
@@ -8,7 +9,7 @@ define([
   'text!templates/tinymce.html',
   'text!templates/manyTab.html',
   'text!templates/input.html'
-  ], function (home, test, sly, scroll, dynamicColumn, ticketTable, tinymce, manyTab, input) {
+  ], function (home, valid, test, sly, scroll, dynamicColumn, ticketTable, tinymce, manyTab, input) {
   'use strict';
   return ['$locationProvider', '$stateProvider', '$urlRouterProvider', 
     function ($locationProvider, $stateProvider, $urlRouterProvider) {
@@ -18,6 +19,11 @@ define([
         .state('home', {
           url: '/',
           template: home
+        })
+        .state('valid', {
+          url: '/valid',
+          template: valid,
+          controller: 'validController'
         })
         .state('test', {
           url: '/test',

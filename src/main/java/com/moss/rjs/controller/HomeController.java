@@ -6,16 +6,20 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.moss.rjs.message.MessageMapSource;
 import com.moss.rjs.model.Book;
@@ -24,7 +28,8 @@ import com.moss.rjs.model.Book;
 public class HomeController {
 	
 	private Environment environmnet;
-	private MessageMapSource messageMapSource;    
+	private MessageMapSource messageMapSource;
+	private MappingJackson2JsonView jsonView;
 
     @Inject
 	public void setEnvironmnet(Environment environmnet) {
@@ -34,6 +39,13 @@ public class HomeController {
     @Inject
     public void setMessageMapSource(MessageMapSource messageMapSource) {
         this.messageMapSource = messageMapSource;
+    }
+    
+    @PostConstruct
+    public void afterPropertiesSet() {
+        jsonView = new MappingJackson2JsonView();
+        jsonView.setContentType("text/palin");
+        jsonView.setExtractValueFromSingleKeyModel(true);
     }
 
 	@RequestMapping(value="*", method=RequestMethod.GET)
@@ -79,6 +91,24 @@ public class HomeController {
 	    ModelAndView mav = new ModelAndView();
 	    mav.addObject("columnList", columnList);
 	    mav.setViewName("templates/directives/ticketTable");
+	    return mav;
+	}
+	
+	@RequestMapping(value="file", method=RequestMethod.GET)
+    public ModelAndView file() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("file");
+        return mav;
+    }
+	
+	@RequestMapping(value="fileUpload", method=RequestMethod.POST)
+	public ModelAndView fileUpload(@ModelAttribute MultipartFile file) {
+	    ModelAndView mav = new ModelAndView();
+	    System.out.println("test");
+	    Book book = new Book();
+	    book.setTitle(file.getName());
+	    mav.addObject("result", book);
+	    mav.setView(jsonView);
 	    return mav;
 	}
 }

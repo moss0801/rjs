@@ -1,0 +1,10 @@
+<div>
+<div>{{model}}</div>
+<form name="inputForm" ng-model="model">
+  <div>{{inputForm.fileName.$valid}}</div>
+  <input name="fileName" ng-model="model.fileName" ng-required="" ng-minlength="5" />
+  <input name="attachFile" type="file" rjs-file="" ng-model="model.attachFile" rjs-accept=".png,.jpg,.txt,.zip" rjs-file-size="2097152" />
+  <div style="color:red" ng-show="inputForm.attachFile.$error.rjsAccept">확장자 에러</div>
+  <div style="color:red" ng-show="inputForm.attachFile.$error.rjsFileSize">파일 크기 초과</div>
+</form>
+</div>

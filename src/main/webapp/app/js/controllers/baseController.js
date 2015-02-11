@@ -5,11 +5,11 @@
       function($scope, $cookies, $location, baseService) {
         $scope.test = "aaaaa";
         $cookies.test = "test";
-        $scope.bookList = baseService.get();
+        $scope.bookList = baseService.list();
         $scope.now = new Date();
         
         $scope.reload = function() {
-          $scope.bookList = baseService.get();
+          $scope.bookList = baseService.list();
         };
         
         $scope.onTitleClick = function(item) {

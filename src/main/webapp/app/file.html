@@ -1,0 +1,267 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html th:lang="${#locale.language}" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:ng="http://angularjs.org" id="ng-app" ng-app="fileUpload">
+<head>
+<base th:href="@{/}"></base>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>Insert title here</title>
+<!--[if lte IE 9]>
+<script type="text/javascript">
+//baseTag가 동작하도록 설정
+//Fix for IE ignoring relative base tags.
+var baseTag = document.getElementsByTagName('base')[0];
+if (baseTag) {
+  baseTag.href = baseTag.href;
+}
+</script>
+<![endif]-->
+<script type="text/javascript"
+src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221.0%22%2C%22nocss%22%3Atrue%7D%5D%7D"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/moxie/bin/js/moxie.js"></script>
+<script>mOxie.Env.swf_url = 'bower_components/moxie/bin/flash/Moxie.min.swf';</script>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+  // <![CDATA[
+  var app = angular.module('fileUpload', []);
+  app.factory('feedService', ['$q', '$sce', 'feedCache', function ($q, $sce, feedCache) {
+
+    function sanitizeFeedEntry(feedEntry) {
+      feedEntry.title = $sce.trustAsHtml(feedEntry.title);
+      feedEntry.contentSnippet = $sce.trustAsHtml(feedEntry.contentSnippet);
+      feedEntry.content = $sce.trustAsHtml(feedEntry.content);
+      feedEntry.publishedDate = new Date(feedEntry.publishedDate).getTime();
+      console.log('##### feedEntry with date = ', feedEntry);
+      return feedEntry;
+    }
+
+    var getFeeds = function (feedURL, count) {
+      var deferred = $q.defer();
+
+      if (feedCache.hasCache(feedURL)) {
+        return deferred.resolve(sanitizeFeedEntry(feedCache.get(feedURL)));
+      }
+
+      var feed = new google.feeds.Feed(feedURL);
+      if (count) {
+        feed.includeHistoricalEntries();
+        feed.setNumEntries(count);
+      }
+
+      feed.load(function (response) {
+        if (response.error) {
+          deferred.reject(response.error);
+        }
+        else {
+          feedCache.set(response.feed.entries);
+          for (var i = 0; i < response.feed.entries.length; i++) {
+            sanitizeFeedEntry(response.feed.entries[i]);
+          }
+          deferred.resolve(response.feed.entries);
+        }
+      });
+      return deferred.promise;
+    };
+
+    return {
+      getFeeds: getFeeds
+    };
+  }])
+  .factory('feedCache', function () {
+    var CACHE_INTERVAL = 1000 * 60 * 5; //5 minutes
+
+    function cacheTimes() {
+      if ('CACHE_TIMES' in localStorage) {
+        return angular.fromJson(localStorage['CACHE_TIMES']);
+      }
+      return {};
+    }
+
+    function hasCache(name) {
+      var CACHE_TIMES = cacheTimes();
+      return name in CACHE_TIMES && name in localStorage && new Date().getTime() - CACHE_TIMES[name] < CACHE_INTERVAL;
+    }
+
+    return {
+      set: function (name, obj) {
+        localStorage[name] = angular.toJson(obj);
+        var CACHE_TIMES = cacheTimes();
+        CACHE_TIMES[name] = new Date().getTime();
+        localStorage['CACHE_TIMES'] = angular.toJson(CACHE_TIMES);
+      },
+      get: function (name) {
+        if (hasCache(name)) {
+          return angular.fromJson(localStorage[name]);
+        }
+        return null;
+      },
+      hasCache: hasCache
+    };
+  });
+  app.directive('fileInput', function() {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs, controllers) {
+        if (!angular.isArray(scope.files)) {
+          scope.files = [];
+        }
+        var fileInput = new mOxie.FileInput({
+          browse_button: element[0],
+          accept: [
+            {title: "Image files", extensions: "jpg,gif,png"} // accept only images
+          ]    
+        });
+        
+        fileInput.onchange = function(e) {
+          scope.$apply(function() {
+            scope.files.push(e.target.files[0]);
+          });
+        };
+        
+        fileInput.init();
+      }
+    };
+  });
+  app.controller('baseController', ['$scope', '$http', 'feedService', function($scope, $http, feedService) {
+    function appendTransform(defaults, transform) {
+
+      // We can't guarantee that the default transformation is an array
+      defaults = angular.isArray(defaults) ? defaults : [defaults];
+
+      // Append the new transformation to the defaults
+      return defaults.concat(transform);
+    };
+    
+    feedService.getFeeds('http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=4573025000', 10)
+      .then(function (feedsObj) {
+        alert(feedsObj);
+      }, function(error) {
+        
+      }).finally(function() {
+        
+      });
+    
+    /* $.getJSON('http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=4573025000&callback=?', function(data){
+      var data = $(data.results[0]);
+      alert(data);
+    }); */
+    /* $.ajax({
+      url : 'http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=4573025000&callback=JSON_CALLBACK',
+      dataType : 'jsonp',
+      jsonp : 'callback',
+      success : function(d){
+          alert(d);
+      }
+    }); */
+    
+    /* $http({
+      method: 'JSONP',
+      url: 'http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=4573025000&callback=JSON_CALLBACK',
+      headers: {
+        'Content-Type': undefined
+      },
+      transformResponse: function(value) {
+        return value;
+      }
+    })
+      .success(function(data, status, headers, config) {
+        $scope.data = data;
+      }); */
+    
+    
+    $scope.upload = function() {
+      var formData = new mOxie.FormData();
+      formData.append('file', $scope.files[0]);
+      
+      $.post(
+        'fileUpload',
+        formData,
+        function(result) {
+          alert(result);
+        }
+      );
+      
+      /* var xhr = new mOxie.XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status==200) {
+          alert(xhr.responseText);
+        }
+      }
+      
+      xhr.open('POST', '/rjs/fileUpload', false);
+      var formData = new mOxie.FormData();
+      formData.append('file', $scope.files[0]);
+      xhr.send(formData); */
+      
+    };
+    /* var fileInput1 = new mOxie.FileInput({
+      browse_button: 'file-picker1', // or document.getElementById('file-picker')
+      container: 'container',
+      accept: [
+          {title: "Image files", extensions: "jpg,gif,png"} // accept only images
+      ]
+    });
+    var fileInput2 = new mOxie.FileInput({
+      browse_button: 'file-picker2', // or document.getElementById('file-picker')
+      container: 'container',
+      accept: [
+          {title: "Image files", extensions: "jpg,gif,png"} // accept only images
+      ]
+    });
+    var fileInput3 = new mOxie.FileInput({
+      browse_button: 'file-picker3', // or document.getElementById('file-picker')
+      container: 'container',
+      accept: [
+          {title: "Image files", extensions: "jpg,gif,png"} // accept only images
+      ]
+    }); */
+    /* $scope.test = 1234;
+    $scope.files = [];
+    fileInput1.onchange = function(e) {
+      $scope.$apply(function() {
+        $scope.files.push(e.target.files[0]);
+      });
+    };
+    fileInput2.onchange = function(e) {
+      $scope.$apply(function() {
+        $scope.files.push(e.target.files[0]);
+      });
+    };
+    fileInput3.onchange = function(e) {
+      $scope.$apply(function() {
+        $scope.files.push(e.target.files[0]);
+      });
+    };
+
+    fileInput1.init(); // initialize
+    fileInput2.init(); // initialize
+    fileInput3.init(); // initialize */
+  }]);
+  // ]]>
+</script>
+</head>
+<body ng-controller="baseController">
+<div>
+  <button file-input="">Browse...</button>
+</div>
+<div>{{files}}</div>
+<button ng-click="upload()" >전송</button>
+<!-- <div id="container">
+  <button ng-hide="files.length !== 0" id="file-picker1">Browse...</button>
+  <button ng-hide="files.length !== 1" id="file-picker2">Browse...</button>
+  <button ng-hide="files.length !== 2" id="file-picker3">Browse...</button>
+  <div>{{files.length}}</div>
+  <div>{{test}}</div>
+  <div>{{files}}</div>
+  <div ng-repeat="file in files">
+    <span>{{file.name}} {{file.size}} {{file.type}}</span> <button ng-click="removeFile(file)">X</button>
+  </div>
+</div> -->
+
+<div>{{data}}</div>
+</body>
+</html>

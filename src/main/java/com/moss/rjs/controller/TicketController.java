@@ -4,17 +4,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.moss.rjs.model.Ticket;
 
 @RequestMapping("api/ticket")
-@RestController
+@Controller
 public class TicketController {
     
     private List<Ticket> ticketList = new ArrayList<Ticket>();
+    
+    @Inject
+    private MappingJackson2JsonView jsonView;
     
     public TicketController() {
         for (int i = 1; i < 100; i++) {
@@ -35,8 +42,11 @@ public class TicketController {
     }
     
     @RequestMapping(value="", method=RequestMethod.GET)
-    public List<Ticket> getTicketList() throws InterruptedException {
-        return ticketList;
+    public ModelAndView getTicketList() throws InterruptedException {
+        ModelAndView mav = new ModelAndView();
+        mav.setView(jsonView);
+        mav.addObject("result", ticketList);
+        return mav;
     }
     
 }

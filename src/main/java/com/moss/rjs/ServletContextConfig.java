@@ -5,12 +5,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -76,5 +78,22 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
         thymeleafViewResolver.setCache(false);
         thymeleafViewResolver.setCharacterEncoding("UTF-8");
         return thymeleafViewResolver;
+    }
+    
+    @Bean
+    public MappingJackson2JsonView jsonView() {
+        MappingJackson2JsonView jsonView = new MappingJackson2JsonView();
+        jsonView.setContentType("text/plain");
+        return jsonView;
+    }
+    
+    @Bean
+    public TestControllerAdvice controllerAdvice() {
+        return new TestControllerAdvice();
+    }
+    
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        return new CommonsMultipartResolver();
     }
 }
